@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
+    <style>
+        
+        * {
+        box-sizing: border-box;
+        
+        }
+
+        body {
+        font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        /* Float four columns side by side */
+        .column {
+        float: left;
+        width: 25%;
+        padding: 0 20px;
+        }
+
+        /* Remove extra left and right margins, due to padding */
+        .row {margin: 0 -5px;}
+
+        /* Clear floats after the columns */
+        .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
+
+        /* Responsive columns */
+        @media screen and (max-width: 600px) {
+        .column {
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+        }
+        }
+     /* Style right card */
+        .Rightcard {
+            float: right;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 100px;
+            text-align: center;
+            text-align-last: right;
+            background-color: #f1f1f1;
+        }
+        /* Style the counter cards */
+        .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 100px;
+        text-align: center;
+        background-color: #f1f1f1;
+         }
+    </style>
+    </head>
+<body>
+    <div class="row">
+          <div class="Rightcard" >
+            <img src="Images/shay.jpg" alt="Shay" style="width:200px;height:200px; border-radius: 50%;"> 
+            <h1>שי בן דוד</h1>
+            <h2 id ="successResults"></h2>
+          </div>
+    <div id="myDiv" class="card" style="text-align: center; font-size: xx-large"> 
+        <p id= "myEx" style="top: -400px">&nbsp &nbsp &nbsp &nbsp &nbsp </p>
+        <input id ="mult">
+    </div>
+    <div id="welldone" style="text-align: center; font-size: xx-large"> </div>
+</div>
+<script>
+   let result
+   let success=0
+   let amount=0
+   createExcercise()
+   listen()
+    function createExcercise()
+    {
+       let j= Math.floor(Math.random() * 10)
+       let i= Math.floor(Math.random() * 10)
+       myEx.innerText=`${i} * ${j} =`
+       result =i*j
+       return
+    }
+    
+    function listen(){
+        // Get the input field
+        var input = document.getElementById("mult");
+
+        // Execute a function when the user releases a key on the keyboard
+        input.addEventListener("keyup", function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            win()
+        }
+        });
+    }
+    function win()
+    {
+        amount++
+        if (mult.value==result)
+        {
+            success++
+            welldone.innerHTML = `<h1 style= "color : green"> כל הכבוד אהובה שלי</h1>
+            <h1 class="animate__animated animate__tada animate__repeat-3">יההה </h1>`
+            createExcercise()
+            mult.value=''
+    
+        }
+        else             
+           {
+            welldone.innerHTML = `<h1 style= "color : red">נסי שוב</h1> 
+            <h1 class="animate__animated animate__pulse animate__repeat-3" >באסה </h1>`
+            mult.value=''
+            
+            }
+        successResults.innerText =` ${amount} הצלחת  ${success} מתוך`
+    }
+ 
+</script>
+</body>
+</html>
